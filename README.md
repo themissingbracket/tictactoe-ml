@@ -10,3 +10,45 @@ The idea is to build a similar react application using typescript and the new Re
 ---
 -  Deploy to Heroku.
 - CI/CD (Probably overkill for an app like this). But would help in getting an understanding of how CI/CD works.
+
+
+#### Getting Started
+----
+The React App was built using the create-react-app boiler plate for typescript
+
+`
+   npx create-react-app tictactoe --typescript
+`
+
+
+##### To start the Development Server
+
+I moved the default start script for create-react-app to start:server, as heroku by default runs the start script in package.json and that has led to some issues.
+
+`
+    npm start:server
+`
+or if you prefer yarn 
+`
+    yarn start:server
+`
+
+#### To deploy 
+
+By default the boiler plate assumes the application is going to be deployed on a static server.
+
+Run 
+
+`
+npm build or yarn build
+`
+to create the production build
+
+
+#### To run the tests
+
+The boiler plate comes pre-built with jest as the test-runner.
+To run the tests
+`
+    yarn test or npm test
+`
