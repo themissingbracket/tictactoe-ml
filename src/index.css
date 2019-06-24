@@ -28,7 +28,12 @@ body {
   width:100%;
   /* border:1px white dashed; */
 }
-
+.grid .btn{
+  margin-top:1px;
+}
+.grid .btn button{
+  background:#ebe8e8;
+}
 .grid .row .block{
   height:100%;
   border:1px solid black;
