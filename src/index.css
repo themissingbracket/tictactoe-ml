@@ -34,7 +34,7 @@ body {
 .grid .btn button{
   background:#ebe8e8;
 }
-.grid .row .block{
+ .block{
   height:100%;
   border:1px solid black;
   flex-grow: 1;
@@ -50,19 +50,24 @@ body {
 }
 .disabled{
   pointer-events: none;
-  background:#ebe8e8;
-  color:black;
+  /* background:#ebe8e8;
+  color:black; */
 }
 
-.grid .row .block:hover{
+
+
+ .block:hover{
   background:#ebe8e8;
 }
 
-.grid .row .block span{
+.block span{
   position:absolute;
   height:100%;
   width:100%;
   color:#636060;
   font-size: 3rem;
   text-align: center;
+}
+.block.winning span {
+  color:rgb(250, 89, 89);
 }
