@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ResetType } from './Interface';
+
 
 const isEqual:Function = (array:any[]):boolean => array.length===3 ? array.every((a:any)=>a===array[0]):false
 

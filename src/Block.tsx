@@ -4,7 +4,10 @@ const Block: FC<BlockProps> = ({ value, position, onClick, winning }) => {
 
 
     return (
-        <div className={`block ${value ? "disabled" : ""} ${winning ? 'winning' : ''}`} onClick={() => onClick(position)}>
+        <div 
+        className={`block ${!onClick ? "disabled" : ""} ${winning ? 'winning' : ''}`} 
+        onClick={() => onClick && onClick(position)}
+        >
             <span>{value}</span>
         </div>
     )
