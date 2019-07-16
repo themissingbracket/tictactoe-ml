@@ -9,6 +9,8 @@ The idea is to build a similar react application using typescript and the new Re
 #### Future Plans 
 ---
 -  Deploy to Heroku.
+
+    - The application has been deployed on [Heroku](https://mysterious-beach-68846.herokuapp.com/)
 - CI/CD (Probably overkill for an app like this). But would help in getting an understanding of how CI/CD works.
 
 
