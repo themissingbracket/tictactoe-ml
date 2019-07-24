@@ -1,6 +1,18 @@
 import { useState } from 'react';
 
 
+
+export const useStore = ()=>{
+    const store = {
+        Blocks:Array(9).fill(null),
+        gameOver:false,
+        currenPlayerX:true
+    }
+
+    const [gameState,changeGameState] = useState(store)
+    return {store:gameState,changeState:changeGameState}
+}
+
 const isEqual:Function = (array:any[]):boolean => array.length===3 ? array.every((a:any)=>a===array[0]):false
 
 

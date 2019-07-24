@@ -2,17 +2,25 @@
   "name": "tictactoe",
   "version": "0.1.0",
   "private": true,
+  "main": "server.js",
   "dependencies": {
     "@types/jest": "24.0.15",
     "@types/node": "12.0.10",
     "@types/react": "16.8.22",
     "@types/react-dom": "16.8.4",
+    "@types/socket.io-client": "^1.4.32",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "nedb": "^1.8.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0",
     "typescript": "3.5.2"
   },
   "scripts": {
+    "server": "nodemon",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -32,5 +40,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "proxy": "http://localhost:3030",
+  "devDependencies": {
+    "concurrently": "^4.1.1",
+    "nodemon": "^1.19.1"
   }
 }

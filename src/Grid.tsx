@@ -10,40 +10,29 @@ import
   useWinningHand, 
   GetWinner,
   blockController,
-  ResetGame
+  ResetGame,
+  useStore
 } 
 from './utils';
 
 // console.log(State)
 const Grid:FC = (props)=>{
-  
-  const { Blocks, setBlock } = useBlocks()
-  const {isPlayerX,setisPlayerX} = usePlayerisX()
-  const { gameOver,setgameOver } = useGameOver()
-  const {winningHand,setWinningHand} = useWinningHand()
-  
-  const Reset = () => ResetGame({ setBlock, setisPlayerX, setgameOver, setWinningHand})
+  const { store,changeState } = useStore()
+  const { Blocks, gameOver } = store
+  console.log(Blocks)
+  console.log(store)
+  const Reset = ():void => {
 
-  const blockClickedController=(position:number):void=>
-    blockController(position, Blocks, isPlayerX, setBlock, CheckGameState)   
-  
-  const CheckGameState=(blocks:string[]):void=>{
-    
-    const { winner, winningSequence } = GetWinner(sequence.map(seq => blocks.filter((b, idx) => seq.includes(idx) && b)) ,sequence)
-    winningSequence && setWinningHand(winningSequence) 
-    if (winner) return setgameOver(true)
-    if (!winner && blocks.find(val => val === null)===undefined) return setgameOver(true)
-    const newPlayer = !isPlayerX
-    setisPlayerX(newPlayer)
+  }//ResetGame({ setBlock, setisPlayerX, setgameOver, setWinningHand})
+  const blockClickedController=(position:number):void=>{
+    const value = store.currenPlayerX?'X':'O'
+      // console.log(value)
+    const blocks = store.Blocks.map((block, idx) => idx === position ? value : block)
+    changeState({ Blocks: blocks,currenPlayerX:!store.currenPlayerX,...store})    
+    // console.log(state)
   }
-  
-  const Message = gameOver ? 
-    (winningHand.length === 0) ? `It's a draw!!`
-        :
-      `Player ${isPlayerX ? "X" : "O"} wins!!!`
-      : 
-   `Curent Player : ${isPlayerX ? "X" : "O"}`
- 
+  const Message = ''
+  const winningHand:number[] =[] as number[]
   return (
     <Fragment>
         <div className="gameBoard">
