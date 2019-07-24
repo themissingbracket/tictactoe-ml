@@ -31,7 +31,7 @@ socket.on('connect',client=>{
         // console.log(sock)
         // const {gameid} = sock
         if (!sock || !sock.gameId){
-            console.log("gameid")
+            // console.log("gameid")
             const _id = uuid()
             const game = createGame()
             CurrentGame[_id] = { ...game,players: [client.id] ,_id}
@@ -39,10 +39,11 @@ socket.on('connect',client=>{
             socket.emit("UpdateState",{_id,...game})
         }else{
             const game = {...CurrentGame[sock.gameId]}||createGame()
-            delete game['players']
+            // delete game['players']
+            // console.log(CurrentGame[sock.gameId])
             CurrentGame[sock.gameId].players.push(client.id)
             logger.debug("Socket Emit")
-            socket.emit("UpdateState",{_id:sock.gameId,...game})
+            socket.emit("UpdateState", CurrentGame[sock.gameId])
         }
         
         // client.br
@@ -57,8 +58,7 @@ socket.on('connect',client=>{
     client.on('User Played', ({ _id, blocks }) => {
         logger.debug("User Has Played")        
         CurrentGame[_id] = CheckGame({ ...CurrentGame[_id], Blocks: blocks })
-        
-        
+        // console.log(CurrentGame[_id])
         // CurrentGame[_id].currentPlayerX = !CurrentGame[_id].currentPlayerX
         socket.emit("UpdateState", CurrentGame[_id])
     })
@@ -69,7 +69,7 @@ const CheckGame = ({
     Blocks,
     winningHand,
     gameOver,
-    currentPlayerX})=>{
+    currentPlayerX,...rest})=>{
     const sequence= [
         [0, 3, 6],
         [1, 4, 7],
@@ -87,7 +87,8 @@ const CheckGame = ({
         Blocks,
         winningHand:winningSequence||[],
         gameOver:winningSequence?true:false,
-        currentPlayerX:!currentPlayerX
+        currentPlayerX:!currentPlayerX,
+        ...rest
     }
     
 }
