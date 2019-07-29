@@ -9,6 +9,9 @@ The idea is to build a similar react application using typescript and the new Re
 #### Future Plans 
 ---
 -  Deploy to Heroku.
+    - The current master branch has not been deployed. The WebSockets setup is still in protoype stage. 
+        - Current dev is now being done on the setup-websocket [branch](https://github.com/themissingbracket/tictactoe/tree/setup-websocket)
+
 
     - The application has been deployed on [Heroku](https://mysterious-beach-68846.herokuapp.com/)
 - CI/CD (Probably overkill for an app like this). But would help in getting an understanding of how CI/CD works.
