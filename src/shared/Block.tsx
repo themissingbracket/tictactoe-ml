@@ -1,5 +1,11 @@
 import React,{ FC } from 'react'
-import { BlockProps } from './Interface'; 
+// import { BlockProps } from './Interface'; 
+interface BlockProps {
+    position: number,
+    onClick: any,
+    value: string,
+    winning: boolean
+}
 const Block: FC<BlockProps> = ({ value, position, onClick, winning }) => {
 
 
