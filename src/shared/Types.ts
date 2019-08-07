@@ -9,3 +9,4 @@ export interface GameState {
 // export interface GameStateClient extends GameState{
 //     currentPlayerX:boolean
 // }
+
