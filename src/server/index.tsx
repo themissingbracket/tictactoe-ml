@@ -26,6 +26,7 @@ router.get('/',(req:Express.Request,res:Express.Response,next:Express.NextFuncti
             <meta charset="UTF-8"/>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+            <link rel="stylesheet" type="text/css" href="main.css"/>
             <title>Document</title>
         </head>
         <body>
@@ -38,7 +39,7 @@ router.get('/',(req:Express.Request,res:Express.Response,next:Express.NextFuncti
 
 app.use('/',router)
 console.log(__dirname)
-app.use(Express.static('./dist'))
+app.use(Express.static('./server/dist'))
 const PORT:number = Number(process.env.PORT)|| 3030
 
 app.listen(PORT,()=>console.log(`App is running on port ${PORT}`))
