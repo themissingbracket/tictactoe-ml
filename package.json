@@ -26,10 +26,10 @@
     "uuid": "^3.3.2"
   },
   "scripts": {
-    "start": "webpack --watch",
-    "server": "nodemon",
-    "client:server": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "node build/main.js",
+    "server": "nodemon build/main.js",
+    "dev:server": "webpack --watch",
+    "build": "webpack",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
