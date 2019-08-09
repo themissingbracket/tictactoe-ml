@@ -3,7 +3,7 @@ const path = require('path');
 const webpack = require('webpack')
 const nodeExternals = require('webpack-node-externals')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
+const webpackhtmlplugin = require('html-webpack-plugin')
 const BaseConfig = {
     resolve: {
         extensions: ['.ts', '.js', '.json','.tsx']
@@ -29,10 +29,10 @@ const BaseConfig = {
 
 
 const ServerConfig = {
-    entry:'./src/server/index.tsx',
+    entry:'./src/server/index.ts',
     externals: [nodeExternals()],
     output:{
-        path:path.join(__dirname,'server'),
+        path:path.join(__dirname,'build'),
         filename:'[name].js'
     },
     plugins:[
@@ -50,8 +50,8 @@ const ServerConfig = {
 const ClientConfig = {
     entry: './src/client/index.tsx',
     output: {
-        path: path.join(__dirname,'server', 'dist'),
-        filename: '[name].js'
+        path: path.join(__dirname,'build', 'dist'),
+        filename: '[name].[hash].js'
     },
     plugins:[
         new webpack.DefinePlugin(
@@ -63,7 +63,12 @@ const ClientConfig = {
             // Options similar to the same options in webpackOptions.output
             // both options are optional
             filename: "[name].css",
-        })
+        }),
+        new webpackhtmlplugin(
+            {
+                template:'./index.html'
+            }
+        )
     ],
     ...BaseConfig
 }

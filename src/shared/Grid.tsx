@@ -2,19 +2,58 @@
 import React, { Fragment,FC,useEffect,useState } from 'react';
 import Block from './Block';
 import { GameState } from './Types';
+import { SubscribeToGame, UpdateGameState } from '../Socket/Client';
+import { URLSearchParams } from 'url';
+import queryString from 'query-string'
 
 
 
-
-
-const Grid = (props: GameState)=>{
-  const { _id,Blocks,winningHand,gameOver,currentPlayerX } = props
-
-  const [blocks,Updateblocks] = useState(Blocks)
+const Grid = ()=>{
+  
+  const [winningHand,updateWinningHand] = useState([] as number[])
+  const [blocks,updateBlocks] = useState([] as string[])
+  const [gameOver,updateGameOver] = useState(false)
+  const [currentPlayerX,setIsCurrentPlayerX] = useState(false)
+  const [_id,updateGameID] = useState('')
+  const GetGameID = (): string | null => {
+    const qs = queryString.parse(location.search) 
+    const _id = qs._id ? qs._id as string : null
+    return _id
+  }
   useEffect(() => {
-    
-  }, [blocks])
-  const blockClickedController = (id:number)=>console.log("blockClicked")
+    if(_id){
+      const qs = queryString.stringify({_id})
+      history.pushState && history.pushState({},'',`${location.pathname}?${qs}`)
+    }
+  }, [_id])
+  
+  const UpdateState = (state:GameState)=>{
+    const { _id,Blocks,currentPlayerX,gameOver,winningHand } = state
+    console.log("updateState")
+    updateBlocks(Blocks)
+    updateWinningHand(winningHand)
+    updateGameOver(gameOver)
+    setIsCurrentPlayerX(currentPlayerX)
+    updateGameID(_id)
+
+  }
+  
+  useEffect(() => {
+    SubscribeToGame(UpdateState,GetGameID())
+  }, [])
+  
+  const blockClickedController = (id:number)=>{
+    const value = currentPlayerX?'X':'O'
+    const state:GameState = {
+      _id,
+      Blocks:blocks.map((b,idx)=>idx===id?value:b),
+      currentPlayerX, 
+      gameOver,
+      winningHand
+    }
+    console.log(state)
+    UpdateGameState(state)
+  }
   const Message = "Message"
   const Reset = ()=>"Reset"
   return (
@@ -55,11 +94,7 @@ const Grid = (props: GameState)=>{
               <img style={{ paddingLeft: "5px", color: "#bdc3c7" }} src="assets/github-social.png" alt="" height="20px" width="20px" />
             </a>
           </span>
-          <span>
-            {
-              !_id &&
-              `http://localhost:3000?_id=${_id}`
-            }
+          <span>            
           </span>
         </footer>
       </div>

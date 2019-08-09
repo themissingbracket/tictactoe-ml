@@ -52,7 +52,12 @@
                 background:#bdc3c7;
             }
             span {
-                color: #e74c3c;
+                position:absolute;
+                height:100%;
+                width:100%;
+                color:#34495e;
+                font-size: 3rem;
+                text-align: center;
             }
             &.winning span{
                 color: #e74c3c;
