@@ -3,9 +3,8 @@ export interface GameState {
     Blocks: string[]
     winningHand: number[]
     gameOver: boolean
-    currentPlayerX:boolean
+    currentPlayerX: boolean
 }
 
-// export interface GameStateClient extends GameState{
-//     currentPlayerX:boolean
-// }
+
+// export 
