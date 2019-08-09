@@ -4,8 +4,7 @@ import Block from './Block';
 import { GameState } from './Types';
 import { SubscribeToGame, UpdateGameState } from '../Socket/Client';
 import { URLSearchParams } from 'url';
-import queryString from 'query-string'
-
+import queryString from 'query-string';
 
 
 const Grid = ()=>{
@@ -51,11 +50,27 @@ const Grid = ()=>{
       gameOver,
       winningHand
     }
-    console.log(state)
+    // console.log(state)
     UpdateGameState(state)
   }
-  const Message = "Message"
-  const Reset = ()=>"Reset"
+  const Message:string = !gameOver ?
+    currentPlayerX ? "Player X turn" : "Player O turn"
+    :
+        `Player ${
+        currentPlayerX ? 'O' : 'X'
+    } 
+    Wins !!!!!`
+  const Reset = ()=>{
+    const state: GameState = {
+      _id,
+      Blocks: Array(9).fill(null),
+      currentPlayerX:false,
+      gameOver:false,
+      winningHand:[] as number[]
+    }
+    // console.log(state)
+    UpdateGameState(state)
+  }
   return (
     <Fragment>
       <div className="gameBoard">
@@ -91,7 +106,8 @@ const Grid = ()=>{
         <footer className="footer">
           <span>Contribute on
               <a href="https://github.com/themissingbracket/tictactoe" target="_blank" rel="noopener noreferrer"> Github
-              <img style={{ paddingLeft: "5px", color: "#bdc3c7" }} src="assets/github-social.png" alt="" height="20px" width="20px" />
+              {/* <i className="fab fa-github"></i> */}
+              <img style={{ paddingLeft: "5px", color: "#bdc3c7" }} src="github-social.png" alt="" height="20px" width="20px" />
             </a>
           </span>
           <span>            

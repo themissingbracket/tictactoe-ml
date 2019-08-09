@@ -6,7 +6,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpackhtmlplugin = require('html-webpack-plugin')
 const BaseConfig = {
     resolve: {
-        extensions: ['.ts', '.js', '.json','.tsx']
+        extensions: ['.ts', '.js', '.json','.tsx','.png']
     },
     module:{
         rules:[
@@ -68,6 +68,13 @@ const ClientConfig = {
             {
                 template:'./index.html'
             }
+        ),
+        new (require('copy-webpack-plugin'))(
+            [
+                {
+                    from:'./assets'//,to:"assets"
+                }
+            ]
         )
     ],
     ...BaseConfig
