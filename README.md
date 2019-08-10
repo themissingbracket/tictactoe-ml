@@ -1,3 +1,4 @@
+[![CircleCI](https://circleci.com/gh/themissingbracket/tictactoe.svg?style=svg)](https://circleci.com/gh/themissingbracket/tictactoe)
 ##### Description
 ---
 
