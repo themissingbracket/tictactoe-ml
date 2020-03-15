@@ -1,8 +1,8 @@
-import React , { FC } from 'react';
+import React , { FC } from 'react'
 import { render } from 'react-dom'
-import Grid from '../shared/Grid';
+import Grid from '../shared/Grid'
 // import { GameState } from '../shared/Types';
-import '../styles/index.scss';
+import '../styles/index.scss'
 // import queryString from 'query-string';
 // declare global {
 //     interface Window {

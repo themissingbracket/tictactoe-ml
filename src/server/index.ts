@@ -1,15 +1,15 @@
 // import React from 'react';
-import Express  from 'express';
-import * as dotenv from 'dotenv';
+import Express  from 'express'
+import * as dotenv from 'dotenv'
 // import Grid from '../shared/Grid';
-import Path from 'path';
+import Path from 'path'
 // import { GameState } from '../shared/Types';
 // import { renderToString } from 'react-dom/server'
-import { createServer } from 'http';
+import { createServer } from 'http'
 import createSocket from '../Socket/Server'
 // import GameEngine from '../core/GameEngine';
 
-const Current_File = Path.resolve(__dirname)
+
 dotenv.config()
 
 
@@ -22,8 +22,8 @@ const router:Express.Router = Express.Router()
 
 
 
-router.get('/',async (req:Express.Request,res:Express.Response,next:Express.NextFunction)=>{
-    res.redirect(`index.html`)
+router.get('/',async (req:Express.Request,res:Express.Response)=>{
+	res.redirect('index.html')
 })
 
 app.use('/',router)
